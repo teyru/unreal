@@ -80,7 +80,7 @@ TilemapRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651451542734366431}
   - component: {fileID: 1180386281000855311}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: New Palette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &-2081069163981259126
+--- !u!114 &1147480062324835001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
