@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
         [SerializeField] private Camera MainCamera;
         private Vector3 direction;
 
-        private void Update()
+
+        private bool teletelekinesisActivation = false;
+
+    private void Update()
         {
 
         Telekinesis();
@@ -35,27 +38,34 @@ public class PlayerController : MonoBehaviour
             }
         }
         }
-        private void Telekinesis()
-        {
+    private void Telekinesis()
+    {
         if (Input.GetMouseButton(2))
         {
             Ray ray = new Ray(transform.position, direction);
             Debug.DrawRay(transform.position, direction, Color.green);
-            if (Physics.Raycast(ray, out RaycastHit raycastHit) && Physics.CheckSphere(transform.position, 5))
+            if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {
-                if (raycastHit.collider.gameObject.tag == "Moveable")
+                if (raycastHit.collider.gameObject.tag == "Moveable" && Vector3.Distance(transform.position, raycastHit.collider.gameObject.transform.position) < 10 && raycastHit.rigidbody != null)
                 {
-                    raycastHit.collider.gameObject.transform.position =
-                        new Vector3(raycastHit.collider.gameObject.transform.position.x,
-                                    raycastHit.collider.gameObject.transform.position.y + 4f,
-                                    raycastHit.collider.gameObject.transform.position.z);
-
-
+                    if (!teletelekinesisActivation)
+                    {
+                        teletelekinesisActivation = true;
+                        raycastHit.rigidbody.transform.position = new Vector3(raycastHit.rigidbody.transform.position.x, 1.7f, raycastHit.rigidbody.transform.position.z);
+                        raycastHit.rigidbody.isKinematic = true;
+                        raycastHit.rigidbody.transform.SetParent(gameObject.transform);
+                    }
                 }
             }
         }
+        if (Input.GetMouseButtonUp(2))
+        {
+            gameObject.transform.GetChild(1).GetComponent<Rigidbody>().isKinematic = false;
+            teletelekinesisActivation = false;
+            if (gameObject.transform.GetChild(1).transform.parent != null)
+                gameObject.transform.GetChild(1).transform.parent = null;
         }
-        
+    }
         private void MovingControle()
         {
             float HorizontalMove = Input.GetAxis("Horizontal");
