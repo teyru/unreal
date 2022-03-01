@@ -8,7 +8,9 @@ public class ChekPlatform : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(gameObject.GetComponent<Renderer>().material.name == other.gameObject.GetComponent<Renderer>().material.name)
+        print(other.GetComponent<Renderer>().material.name);
+        print(gameObject.GetComponent<Renderer>().material.name);
+        if (gameObject.GetComponent<Renderer>().material.name == other.GetComponent<Renderer>().material.name)
         {
             checkComplete = true;
         }
@@ -16,7 +18,7 @@ public class ChekPlatform : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (gameObject.GetComponent<Renderer>().material != other.gameObject.GetComponent<Renderer>().material || other == null)
+        if (gameObject.GetComponent<Renderer>().material != other.GetComponent<Renderer>().material || other == null)
         {
             checkComplete = false;
         }

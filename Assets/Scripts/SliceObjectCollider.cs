@@ -17,11 +17,11 @@ public class SliceObjectCollider : MonoBehaviour
         } 
         if (Input.GetMouseButtonDown(1)){
             SlicedHull GMB = Slice(objectToUse);
-            GameObject GMU = GMB.CreateUpperHull(objectToUse, objectToUse.GetComponent<MeshRenderer>().material);
+            GameObject GMU = GMB.CreateUpperHull(objectToUse);
             GMU.AddComponent<MeshCollider>().convex = true;
             GMU.AddComponent<Rigidbody>();
             GMU.tag = "Moveable";
-            GameObject GML = GMB.CreateLowerHull(objectToUse, objectToUse.GetComponent<MeshRenderer>().material);
+            GameObject GML = GMB.CreateLowerHull(objectToUse);
             GML.AddComponent<MeshCollider>().convex = true;
             GML.AddComponent<Rigidbody>();
             GML.tag = "Moveable";

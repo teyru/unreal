@@ -60,10 +60,13 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(2))
         {
-            gameObject.transform.GetChild(1).GetComponent<Rigidbody>().isKinematic = false;
-            teletelekinesisActivation = false;
-            if (gameObject.transform.GetChild(1).transform.parent != null)
-                gameObject.transform.GetChild(1).transform.parent = null;
+            if (gameObject.transform.GetChild(1) != null)
+            {
+                gameObject.transform.GetChild(1).GetComponent<Rigidbody>().isKinematic = false;
+                teletelekinesisActivation = false;
+                if (gameObject.transform.GetChild(1).transform.parent != null)
+                    gameObject.transform.GetChild(1).transform.parent = null;
+            }
         }
     }
         private void MovingControle()
